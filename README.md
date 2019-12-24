@@ -34,11 +34,11 @@ Production code means:
 ### Lints and fixes files
 Will provide you suggestions to avoid potential errors, checking you code at compile time and provide improvements.
 
-Coz remember, JavaScript is too shy to tell you your code is a load of bollocks... It will try to run it and produce some result anyway, making your debug life more fun :)
-
 ```
 npm run lint
 ```
+Coz remember, JavaScript is too shy to tell you your code is a load of bollocks... It will try to run it and produce some result anyway, making your debug life more fun :)
+
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
