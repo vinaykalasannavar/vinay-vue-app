@@ -13,11 +13,11 @@ To run the app in development mode, use the command
 npm run serve
 ```
 
-This will fire the app in debug mode possibly at default port 8080:
-
+This will fire the app in debug mode possibly at default port 8080, something like:
+```
   App running at:
   - Local:   http://localhost:8080/
-
+```
 ### Compiles and minifies for production
 
 To build/ship the app, run this command:
