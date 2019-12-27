@@ -141,6 +141,7 @@ export default {
   height: 150px;
   width: 350px;
   background: #059191;
+    display: inline-grid;
 
   .order-table {
     display: inline-flex;
