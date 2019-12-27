@@ -19,7 +19,7 @@
     export default {
         data() {
             return {
-                github: 'https://github.com/vinaykalasannavar',
+                github: 'https://github.com/vinaykalasannavar/vinay-vue-app',
                 twitter: 'https://twitter.com/kalasannavarvin',
             }
         }
