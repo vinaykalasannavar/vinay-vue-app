@@ -1,24 +1,24 @@
 <template>
   <header>
-    <nav>
-      <a class="navigatio-item" 
-        target="_blank" 
-        rel="noopener noreferrer"
-        href="https://vuejs.org/"
-        >
-        
-        <i class="fab js-logo fa-vuejs fa-2x" aria-hidden="true" />
-
-      </a>
-        <img alt="Vue logo" src="../assets/logo.png">
+    <nav
+      class="navbar has-background-dark is-dark"
+      role="navigation"
+      aria-label="main navigation"
+    >
+      <HeaderBrand />
+      <HeaderLinks />
     </nav>
   </header>
 </template>
 
 <script>
+import HeaderBrand from "@/components/Header-Brand";
+import HeaderLinks from "@/components/Header-Links";
+
 export default {
   name: "AppHeader",
-  props: {}
+  props: {},
+  components: { HeaderBrand, HeaderLinks }
 };
 </script>
 
