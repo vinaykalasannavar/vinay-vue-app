@@ -1,11 +1,45 @@
 <template>
   <div>
     <div>Here's the orders in the system:</div>
-    
-    <div v-for="order in orders" :key="order">
-      <span>OrderId: {{order.orderId}}</span>
-      <span>OrderNumber: {{order.orderNumber}}</span>
-      <span>OrderDate: {{order.orderDate}}</span>
+
+    <div v-for="order in orders" :key="order.orderId" @click="selectOrder(order)">
+      <span class="order-id">OrderId: {{order.orderId}}</span>
+      <span class="order-number">OrderNumber: {{order.orderNumber}}</span>
+      <span class="order-date">OrderDate: {{order.orderDate}}</span>
+      
+    </div>
+
+    <div v-if="selectedOrder != null">
+      <span>Here is the order you have selected:</span>
+
+      <div>
+        <table>
+          <tr>
+            <td>
+              <span>OrderId</span>
+            </td>
+            <td>
+              <input readonly v-model="selectedOrder.orderId" type="text" />
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <span>OrderNumber</span>
+            </td>
+            <td>
+              <input v-model="selectedOrder.orderNumber" type="text" />
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <span>OrderDate</span>
+            </td>
+            <td>
+              <input v-model="selectedOrder.orderDate" type="text" />
+            </td>
+          </tr>
+        </table>
+      </div>
     </div>
   </div>
 </template>
@@ -41,8 +75,17 @@ export default {
           orderNumber: "1005",
           orderDate: "2019-12-05"
         }
-      ]
+      ],
+      selectedOrder: null,
+      selectedOrderText: ""
     };
+  },
+  methods: {
+    selectOrder(order) {
+      this.selectedOrder = order;
+
+      this.selectedOrderText = JSON.stringify(this.selectedOrder);
+    }
   }
 };
 </script>
