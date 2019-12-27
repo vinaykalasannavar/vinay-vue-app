@@ -114,6 +114,10 @@ export default {
     height: 100px;
     float: left;
 
+    &.selected-order {
+      background-color: rgb(7, 145, 145);
+    }
+
     .order-id {
       font-size: x-small;
       float: right;
