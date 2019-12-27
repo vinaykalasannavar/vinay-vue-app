@@ -22,7 +22,7 @@
 
     <div v-if="selectedOrder != null" class="selected-order-details">
       <div>
-        <span>Here is the order you have selected:</span>
+        <span>The order you have selected occurs in {{selectedOrdersMonth}}:</span>
       </div>
 
       <div class="order-table">
@@ -89,15 +89,21 @@ export default {
           orderDate: "2019-12-05"
         }
       ],
-      selectedOrder: null,
-      selectedOrderText: ""
+      selectedOrder: null
     };
   },
   methods: {
     selectOrder(order) {
       this.selectedOrder = order;
-
-      this.selectedOrderText = JSON.stringify(this.selectedOrder);
+    }
+  },
+  computed: {
+    selectedOrdersMonth() {
+      return this.selectedOrder != null
+        ? new Date(this.selectedOrder.orderDate).toLocaleString("default", {
+            month: "long"
+          })
+        : "";
     }
   }
 };
@@ -141,7 +147,7 @@ export default {
   height: 150px;
   width: 350px;
   background: #059191;
-    display: inline-grid;
+  display: inline-grid;
 
   .order-table {
     display: inline-flex;
