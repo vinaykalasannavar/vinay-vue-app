@@ -20,10 +20,12 @@
       </div>
     </div>
 
-    <div v-if="selectedOrder != null">
-      <span>Here is the order you have selected:</span>
-
+    <div v-if="selectedOrder != null" class="selected-order-details">
       <div>
+        <span>Here is the order you have selected:</span>
+      </div>
+
+      <div class="order-table">
         <table>
           <tr>
             <td>
@@ -104,7 +106,7 @@ export default {
 <style lang="scss" scoped>
 .orders {
   list-style: none;
-  width: 100%;
+  display: inline-flex;
 
   .order {
     background-color: #40b883a6;
@@ -112,7 +114,6 @@ export default {
     margin: 5px 5px 5px 5px;
     width: 150px;
     height: 100px;
-    float: left;
 
     &.selected-order {
       background-color: rgb(7, 145, 145);
@@ -132,6 +133,17 @@ export default {
       align-items: flex-end;
       margin: 20px 0 0 0px;
     }
+  }
+}
+
+.selected-order-details {
+  border: 5px solid #059191;
+  height: 150px;
+  width: 350px;
+  background: #059191;
+
+  .order-table {
+    display: inline-flex;
   }
 }
 </style>
