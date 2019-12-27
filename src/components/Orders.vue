@@ -2,11 +2,22 @@
   <div>
     <div>Here's the orders in the system:</div>
 
-    <div v-for="order in orders" :key="order.orderId" @click="selectOrder(order)">
-      <span class="order-id">OrderId: {{order.orderId}}</span>
-      <span class="order-number">OrderNumber: {{order.orderNumber}}</span>
-      <span class="order-date">OrderDate: {{order.orderDate}}</span>
-      
+    <div>
+      <div>
+        <ul class="orders">
+          <li
+            v-for="order in orders"
+            :key="order.orderId"
+            @click="selectOrder(order)"
+            class="order"
+            :class="{'selected-order': (selectedOrder != null && selectedOrder.orderId == order.orderId)}"
+          >
+            <div class="order-id">Order Id: {{order.orderId}}</div>
+            <div class="order-number">Order No: {{order.orderNumber}}</div>
+            <div class="order-date">Date: {{ order.orderDate }}</div>
+          </li>
+        </ul>
+      </div>
     </div>
 
     <div v-if="selectedOrder != null">
@@ -91,4 +102,32 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.orders {
+  list-style: none;
+  width: 100%;
+
+  .order {
+    background-color: #40b883a6;
+    border: 1px solid #12613ea6;
+    margin: 5px 5px 5px 5px;
+    width: 150px;
+    height: 100px;
+    float: left;
+
+    .order-id {
+      font-size: x-small;
+      float: right;
+    }
+    .order-number {
+      height: 50px;
+      padding: 30px 0 0 0;
+    }
+    .order-date {
+      font-size: x-small;
+
+      align-items: flex-end;
+      margin: 20px 0 0 0px;
+    }
+  }
+}
 </style>
