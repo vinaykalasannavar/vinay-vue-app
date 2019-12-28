@@ -48,7 +48,7 @@
               <span>OrderDate</span>
             </td>
             <td>
-              <input v-model="selectedOrder.orderDate" type="text" />
+              <input v-model="selectedOrder.orderDate" type="date" />
             </td>
           </tr>
         </table>
