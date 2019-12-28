@@ -14,7 +14,7 @@
           >
             <div class="order-id">Order Id: {{order.orderId}}</div>
             <div class="order-number">Order No: {{order.orderNumber}}</div>
-            <div class="order-date">Date: {{ order.orderDate }}</div>
+            <div class="order-date">Date: {{ order.orderDate | dateDisplay('DD-MMM-YYYY')  }}</div>
           </li>
         </ul>
       </div>
@@ -58,6 +58,8 @@
 </template>
 
 <script>
+import moment from 'moment'
+
 export default {
   data() {
     return {
@@ -96,6 +98,15 @@ export default {
     selectOrder(order) {
       this.selectedOrder = order;
     }
+  },
+  filters: {
+      dateDisplay: function (value, dateFormat) {
+          let momentDate = moment(value);
+          if(!dateFormat){
+              dateFormat = 'dd-MMM-yyyy';
+          }
+          return momentDate.format(dateFormat);
+      }
   },
   computed: {
     selectedOrdersMonth() {
