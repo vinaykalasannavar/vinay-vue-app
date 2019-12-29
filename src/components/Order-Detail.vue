@@ -12,7 +12,7 @@
               <span>OrderId</span>
             </td>
             <td>
-              <input readonly v-model="order.orderId" type="text" />
+              <input readonly v-model="orderCopy.orderId" type="text" />
             </td>
           </tr>
           <tr>
@@ -20,7 +20,7 @@
               <span>OrderNumber</span>
             </td>
             <td>
-              <input v-model="order.orderNumber" type="text" />
+              <input v-model="orderCopy.orderNumber" type="text" />
             </td>
           </tr>
           <tr>
@@ -28,7 +28,7 @@
               <span>OrderDate</span>
             </td>
             <td>
-              <input v-model="order.orderDate" type="date" />
+              <input v-model="orderCopy.orderDate" type="date" />
             </td>
           </tr>
         </table>

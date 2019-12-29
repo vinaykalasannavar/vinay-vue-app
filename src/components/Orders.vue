@@ -63,7 +63,7 @@ export default {
       this.selectedOrder = null;
     },
     saveOrder(order) {
-      const orderIndex = this.order.findIndex(
+      const orderIndex = this.orders.findIndex(
         o => o.orderId == this.selectedOrder.orderId
       );
       this.orders.splice(orderIndex, 1, order);
