@@ -4,61 +4,22 @@
 
     <div>
       <div>
-        <ul class="orders">
-          <li
-            v-for="order in orders"
-            :key="order.orderId"
-            @click="selectOrder(order)"
-            class="order"
-            :class="{'selected-order': (selectedOrder != null && selectedOrder.orderId == order.orderId)}"
-          >
-            <div class="order-id">Order Id: {{order.orderId}}</div>
-            <div class="order-number">Order No: {{order.orderNumber}}</div>
-            <div class="order-date">Date: {{ order.orderDate | dateDisplay('DD-MMM-YYYY')  }}</div>
-          </li>
-        </ul>
+        <orders-list :orders="orders" @orderSelected="selectAnOrder" />
       </div>
     </div>
 
-    <div v-if="selectedOrder != null" class="selected-order-details">
-      <div>
-        <span>The order you have selected occurs in {{selectedOrdersMonth}}:</span>
-      </div>
-
-      <div class="order-table">
-        <table>
-          <tr>
-            <td>
-              <span>OrderId</span>
-            </td>
-            <td>
-              <input readonly v-model="selectedOrder.orderId" type="text" />
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <span>OrderNumber</span>
-            </td>
-            <td>
-              <input v-model="selectedOrder.orderNumber" type="text" />
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <span>OrderDate</span>
-            </td>
-            <td>
-              <input v-model="selectedOrder.orderDate" type="date" />
-            </td>
-          </tr>
-        </table>
-      </div>
-    </div>
+    <OrderDetail
+      v-if="selectedOrder"
+      :order="selectedOrder"
+      @cancel="cancelOrder"
+      @save="saveOrder"
+    />
   </div>
 </template>
 
 <script>
-import moment from 'moment'
+import OrdersList from "@/components/Orders-List";
+import OrderDetail from "@/components/Order-Detail";
 
 export default {
   data() {
@@ -95,73 +56,23 @@ export default {
     };
   },
   methods: {
-    selectOrder(order) {
+    selectAnOrder(order) {
       this.selectedOrder = order;
+    },
+    cancelOrder() {
+      this.selectedOrder = null;
+    },
+    saveOrder(order) {
+      const orderIndex = this.order.findIndex(
+        o => o.orderId == this.selectedOrder.orderId
+      );
+      this.orders.splice(orderIndex, 1, order);
+      this.orders = [...this.orders];
+      this.selectedOrder = undefined;
     }
   },
-  filters: {
-      dateDisplay: function (value, dateFormat) {
-          let momentDate = moment(value);
-          if(!dateFormat){
-              dateFormat = 'dd-MMM-yyyy';
-          }
-          return momentDate.format(dateFormat);
-      }
-  },
-  computed: {
-    selectedOrdersMonth() {
-      return this.selectedOrder != null
-        ? new Date(this.selectedOrder.orderDate).toLocaleString("default", {
-            month: "long"
-          })
-        : "";
-    }
-  }
+  components: { OrdersList, OrderDetail }
 };
 </script>
 
-<style lang="scss" scoped>
-.orders {
-  list-style: none;
-  display: inline-flex;
-
-  .order {
-    background-color: #40b883a6;
-    border: 1px solid #12613ea6;
-    margin: 5px 5px 5px 5px;
-    width: 150px;
-    height: 100px;
-
-    &.selected-order {
-      background-color: rgb(7, 145, 145);
-    }
-
-    .order-id {
-      font-size: x-small;
-      float: right;
-    }
-    .order-number {
-      height: 50px;
-      padding: 30px 0 0 0;
-    }
-    .order-date {
-      font-size: x-small;
-
-      align-items: flex-end;
-      margin: 20px 0 0 0px;
-    }
-  }
-}
-
-.selected-order-details {
-  border: 5px solid #059191;
-  height: 150px;
-  width: 350px;
-  background: #059191;
-  display: inline-grid;
-
-  .order-table {
-    display: inline-flex;
-  }
-}
-</style>
+<style lang="scss" scoped></style>
