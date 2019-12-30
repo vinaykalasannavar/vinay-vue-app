@@ -11,6 +11,7 @@
     <OrderDetail
       v-if="selectedOrder"
       :order="selectedOrder"
+      :key="selectedOrder.orderId"
       @cancel="cancelOrder"
       @save="saveOrder"
     />

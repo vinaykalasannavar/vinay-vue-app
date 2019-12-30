@@ -26,7 +26,7 @@ export default {
   data() {
     return {
       name: "OrdersList",
-      selectedOrder: undefined
+      selectedOrder: { ...this.inputOrder }
     };
   },
   filters: {
@@ -40,7 +40,7 @@ export default {
   },
   methods: {
     selectLocalOrder(order) {
-      this.selectedOrder = order;
+      // this.selectedOrder = order;
 
       this.$emit("orderSelected", order);
     }
@@ -50,6 +50,10 @@ export default {
       type: Array,
       default: () => {}
     },
+    inputOrder: {
+      type: Object,
+      default: () => {}
+    }
   }
 };
 </script>
