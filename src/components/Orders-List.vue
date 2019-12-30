@@ -13,7 +13,8 @@
       >
         <div class="order-id">Order Id: {{ order.orderId }}</div>
         <div class="order-number">Order No: {{ order.orderNumber }}</div>
-        <div class="order-date">Date: {{ order.orderDate | dateDisplay("DD-MMM-YYYY") }}</div>
+        <div class="order-date">Date: {{ order.orderDate | formatDate }}</div>
+        <!-- <div class="order-date">Date: {{ displayDateFormat }}</div> -->
       </li>
     </ul>
   </div>
@@ -21,22 +22,27 @@
 
 <script>
 import moment from "moment";
+import { displayDateFormat } from "../common/consts";
+
+//TODO: use formatDate filter from the formatters.
+// import { formatters } from "../common/formatters";
 
 export default {
   data() {
     return {
-      name: "OrdersList",
+      name: "OrdersList"
+      //   displayDateFormat : displayDateFormat
     };
   },
-  filters: {
-    dateDisplay: function(value, dateFormat) {
-      let momentDate = moment(value);
-      if (!dateFormat) {
-        dateFormat = "dd-MMM-yyyy";
+  //   mixins: [formatters],
+    filters: {
+      formatDate(dateValue) {
+        // TODO: Use the filter from the mixin
+        //  return formatters.formatDate(dateValue);
+        return moment(dateValue).format(displayDateFormat);
       }
-      return momentDate.format(dateFormat);
-    }
-  },
+    },
+
   methods: {
     selectLocalOrder(order) {
       // this.selectedOrder = order;

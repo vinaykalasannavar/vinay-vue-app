@@ -35,8 +35,8 @@
       </div>
     </div>
     <div>
-      <button @click="cancelOrder">Cancel</button>
-      <button @click="saveOrder">Save</button>
+      <button @click="cancelOrderChanges">Cancel</button>
+      <button @click="saveOrderChanges">Save</button>
     </div>
   </div>
 </template>
@@ -50,10 +50,10 @@ export default {
     };
   },
   methods: {
-    cancelOrder() {
+    cancelOrderChanges() {
       this.$emit("cancel");
     },
-    saveOrder() {
+    saveOrderChanges() {
       this.$emit("save", this.orderCopy);
     }
   },
