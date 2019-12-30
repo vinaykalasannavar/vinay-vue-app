@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div>Here's the orders in the system:</div>
+    <div>Here are the orders in the system:</div>
 
     <div>
       <div>
