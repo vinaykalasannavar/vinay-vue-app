@@ -8,7 +8,7 @@
         class="order"
         :class="{
           'selected-order':
-            selectedOrder != null && selectedOrder.orderId == order.orderId
+            selectedOrderId == order.orderId
         }"
       >
         <div class="order-id">Order Id: {{ order.orderId }}</div>
@@ -26,7 +26,6 @@ export default {
   data() {
     return {
       name: "OrdersList",
-      selectedOrder: { ...this.inputOrder }
     };
   },
   filters: {
@@ -50,9 +49,9 @@ export default {
       type: Array,
       default: () => {}
     },
-    inputOrder: {
-      type: Object,
-      default: () => {}
+    selectedOrderId: {
+      type: Number,
+      default: () => 0
     }
   }
 };

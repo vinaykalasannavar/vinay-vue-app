@@ -4,7 +4,10 @@
 
     <div>
       <div>
-        <orders-list :orders="orders" @orderSelected="selectAnOrder" />
+        <span>The selected Order Id is: {{selectedOrderId}}</span>
+      </div>
+      <div>
+        <orders-list :orders="orders" :selectedOrderId="selectedOrder? selectedOrder.orderId : 0" @orderSelected="selectAnOrder" />
       </div>
     </div>
 
@@ -53,12 +56,14 @@ export default {
           orderDate: "2019-12-05"
         }
       ],
-      selectedOrder: null
+      selectedOrder: null,
+      selectedOrderId: 0
     };
   },
   methods: {
     selectAnOrder(order) {
       this.selectedOrder = order;
+      this.selectedOrderId = this.selectedOrder.orderId;
     },
     cancelOrder() {
       this.selectedOrder = null;
