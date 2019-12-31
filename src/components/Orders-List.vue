@@ -14,7 +14,6 @@
         <div class="order-id">Order Id: {{ order.orderId }}</div>
         <div class="order-number">Order No: {{ order.orderNumber }}</div>
         <div class="order-date">Date: {{ order.orderDate | formatDate }}</div>
-        <!-- <div class="order-date">Date: {{ displayDateFormat }}</div> -->
       </li>
     </ul>
   </div>
