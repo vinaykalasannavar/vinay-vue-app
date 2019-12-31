@@ -23,7 +23,6 @@
 import moment from "moment";
 import { displayDateFormat } from "../common/consts";
 
-//TODO: testing commit3.
 //TODO: use formatDate filter from the formatters.
 // import { formatters } from "../common/formatters";
 
