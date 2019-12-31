@@ -23,6 +23,14 @@
 import moment from "moment";
 import { displayDateFormat } from "../common/consts";
 
+const formatter1 = {
+  filters: {
+    formatDate(dateValue) {
+      return moment(dateValue).format(displayDateFormat);
+    }
+  }
+};
+
 //TODO: use formatDate filter from the formatters.
 // import { formatters } from "../common/formatters";
 
@@ -33,14 +41,15 @@ export default {
       //   displayDateFormat : displayDateFormat
     };
   },
-  //   mixins: [formatters],
-    filters: {
-      formatDate(dateValue) {
-        // TODO: Use the filter from the mixin
-        //  return formatters.formatDate(dateValue);
-        return moment(dateValue).format(displayDateFormat);
-      }
-    },
+  mixins: [formatter1],
+  // mixins: [formatters],
+  // filters: {
+  //   formatDate(dateValue) {
+  //     // TODO: Use the filter from the mixin
+  //     //  return formatters.formatDate(dateValue);
+  //     return moment(dateValue).format(displayDateFormat);
+  //   }
+  // },
 
   methods: {
     selectLocalOrder(order) {

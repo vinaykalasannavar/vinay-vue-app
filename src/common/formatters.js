@@ -1,8 +1,10 @@
-import { displayDateFormat } from './consts';
-import { moment } from 'moment';
+import { displayDateFormat } from "./consts";
+import { moment } from "moment";
 
-export const formatters = {    
+export const formatters = {
+  filters: {
     formatDate(dateValue) {
-        return moment(dateValue).format(displayDateFormat);
-    },
+      return moment(dateValue).format(displayDateFormat);
+    }
+  }
 };
