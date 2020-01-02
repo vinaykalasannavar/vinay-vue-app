@@ -46,7 +46,7 @@ export default {
   },
   methods: {
     async fetchOrders() {
-      //TODO: log that the component is created.
+      //TODO: adder logger and log - component is created, data fetched, etc.
       this.orders = [];
       this.selectedOrder = null;
       this.message = 'Fetching orders, please wait...';
