@@ -1,13 +1,18 @@
 <template>
   <div>
-    <div>Here are the orders in the system:</div>
+    <div v-if="message">{{ message }}</div>
+
+    <div v-if="!message">
+      <span>Here are the orders in the system:</span>
+    </div>
 
     <div>
       <div>
-        <span>The selected Order Id is: {{selectedOrderId}}</span>
-      </div>
-      <div>
-        <orders-list :orders="orders" :selectedOrderId="selectedOrder? selectedOrder.orderId : 0" @orderSelected="selectAnOrder" />
+        <orders-list
+          :orders="orders"
+          :selectedOrderId="selectedOrder? selectedOrder.orderId : 0"
+          @orderSelected="selectAnOrder"
+        />
       </div>
     </div>
 
@@ -24,43 +29,30 @@
 <script>
 import OrdersList from "@/components/Orders-List";
 import OrderDetail from "@/components/Order-Detail";
+import { ordersData } from '../common/ordersData';
 
 export default {
   data() {
     return {
       key: "",
-      orders: [
-        {
-          orderId: "1",
-          orderNumber: "1001",
-          orderDate: "2019-12-01"
-        },
-        {
-          orderId: "2",
-          orderNumber: "1002",
-          orderDate: "2019-12-02"
-        },
-        {
-          orderId: "3",
-          orderNumber: "1003",
-          orderDate: "2019-12-03"
-        },
-        {
-          orderId: "4",
-          orderNumber: "1004",
-          orderDate: "2019-12-04"
-        },
-        {
-          orderId: "5",
-          orderNumber: "1005",
-          orderDate: "2019-12-05"
-        }
-      ],
+      message: "",
+      orders: [],
       selectedOrder: null,
       selectedOrderId: 0
     };
   },
+  async created() {
+    this.fetchOrders();
+  },
   methods: {
+    async fetchOrders() {
+      //TODO: log that the component is created.
+      this.orders = [];
+      this.selectedOrder = null;
+      this.message = 'Fetching orders, please wait...';
+      this.orders = await ordersData.getOrders();
+      this.message = '';
+    },
     selectAnOrder(order) {
       this.selectedOrder = order;
       this.selectedOrderId = this.selectedOrder.orderId;
