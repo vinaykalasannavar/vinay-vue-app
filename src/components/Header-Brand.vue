@@ -9,12 +9,7 @@
           >
             <img alt="Vue logo" src="../assets/logo.png" class />
           </a>
-        </li>
-        <li class="navbar-item">
-          <a class="navbar-item nav-home">
-            <span class="glyphicon glyphicon-home"></span> Home
-          </a>
-        </li>
+        </li>        
       </ul>
 </template>
 
