@@ -4,12 +4,8 @@ import { API_PATH } from './config'
 
 const getOrders = async function () {
     try {
-        console.log('API_PATH', API_PATH);
-
         const response = await axios.get(`${API_PATH}/orders.json`);
-
         let ordersData = parseOrdersData(response);
-
         return  ordersData;
     } catch (error) {
         // logging.logError('Failed to fetch orders data, error message: ${error}');

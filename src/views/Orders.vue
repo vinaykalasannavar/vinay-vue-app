@@ -27,8 +27,8 @@
 </template>
 
 <script>
-import OrdersList from "@/components/Orders-List";
-import OrderDetail from "@/components/Order-Detail";
+import OrdersList from "./Orders-List";
+import OrderDetail from "./Order-Detail";
 import { ordersData } from '../common/ordersData';
 
 export default {

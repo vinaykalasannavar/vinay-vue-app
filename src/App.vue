@@ -1,20 +1,16 @@
 <template>
   <div id="app">
     <AppHeader />
-    <Orders />
+    <router-view />
   </div>
 </template>
 
 <script>
 import AppHeader from "./components/AppHeader.vue";
-import Orders   from "@/components/Orders"
 
 export default {
   name: "app",
-  components: {
-    AppHeader,
-    Orders
-  }
+  components: { AppHeader }
 };
 </script>
 
