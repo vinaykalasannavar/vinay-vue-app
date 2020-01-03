@@ -4,16 +4,17 @@
       <li
         v-for="order in orders"
         :key="order.orderId"
-        @click="selectLocalOrder(order)"
         class="order"
         :class="{
           'selected-order':
             selectedOrderId == order.orderId
         }"
       >
-        <div class="order-id">Order Id: {{ order.orderId }}</div>
-        <div class="order-number">Order No: {{ order.orderNumber }}</div>
-        <div class="order-date">Date: {{ order.orderDate | formatDate }}</div>
+        <router-link :to="{name: 'order-detail', params:{id: order.orderId} }">
+          <div class="order-id">Order Id: {{ order.orderId }}</div>
+          <div class="order-number">Order No: {{ order.orderNumber }}</div>
+          <div class="order-date">Date: {{ order.orderDate | formatDate }}</div>
+        </router-link>
       </li>
     </ul>
   </div>
@@ -30,11 +31,10 @@ export default {
   },
   mixins: [formatters],
   methods: {
-    selectLocalOrder(order) {
-      // this.selectedOrder = order;
-
-      this.$emit("orderSelected", order);
-    }
+    // selectLocalOrder(order) {
+    //   // this.selectedOrder = order;
+    //   this.$emit("orderSelected", order);
+    // }
   },
   props: {
     orders: {

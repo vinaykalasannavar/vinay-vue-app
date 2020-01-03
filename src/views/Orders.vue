@@ -16,19 +16,19 @@
       </div>
     </div>
 
-    <OrderDetail
+    <!-- <OrderDetail
       v-if="selectedOrder"
       :order="selectedOrder"
       :key="selectedOrder.orderId"
       @cancel="cancelOrder"
       @save="saveOrder"
-    />
+    /> -->
   </div>
 </template>
 
 <script>
 import OrdersList from "./Orders-List";
-import OrderDetail from "./Order-Detail";
+// import OrderDetail from "./Order-Detail";
 import { ordersData } from '../common/ordersData';
 
 export default {
@@ -69,7 +69,7 @@ export default {
       this.selectedOrder = undefined;
     }
   },
-  components: { OrdersList, OrderDetail }
+  components: { OrdersList }
 };
 </script>
 
