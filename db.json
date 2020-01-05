@@ -1,19 +1,29 @@
 {
-  "posts": [
+  "orders": [
     {
-      "id": 1,
-      "title": "json-server",
-      "author": "typicode"
-    }
-  ],
-  "comments": [
+      "id": "1",
+      "orderNumber": "1001",
+      "orderDate": "2019-12-01"
+    },
     {
-      "id": 1,
-      "body": "some comment",
-      "postId": 1
+      "id": "2",
+      "orderNumber": "1002",
+      "orderDate": "2019-12-02"
+    },
+    {
+      "id": "3",
+      "orderNumber": "1003",
+      "orderDate": "2019-12-03"
+    },
+    {
+      "id": "4",
+      "orderNumber": "1004",
+      "orderDate": "2019-12-04"
+    },
+    {
+      "id": "5",
+      "orderNumber": "1005",
+      "orderDate": "2019-12-05"
     }
-  ],
-  "profile": {
-    "name": "typicode"
-  }
+  ]
 }

@@ -8,11 +8,7 @@
 
     <div>
       <div>
-        <orders-list
-          :orders="orders"
-          :selectedOrderId="selectedOrder? selectedOrder.orderId : 0"
-          @orderSelected="selectAnOrder"
-        />
+        <orders-list :orders="orders" />
       </div>
     </div>
 
@@ -28,7 +24,6 @@
 
 <script>
 import OrdersList from "./Orders-List";
-// import OrderDetail from "./Order-Detail";
 import { ordersData } from '../common/ordersData';
 
 export default {
@@ -52,10 +47,6 @@ export default {
       this.message = 'Fetching orders, please wait...';
       this.orders = await ordersData.getOrders();
       this.message = '';
-    },
-    selectAnOrder(order) {
-      this.selectedOrder = order;
-      this.selectedOrderId = this.selectedOrder.orderId;
     },
     cancelOrder() {
       this.selectedOrder = null;

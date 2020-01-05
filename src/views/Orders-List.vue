@@ -5,10 +5,6 @@
         v-for="order in orders"
         :key="order.orderId"
         class="order"
-        :class="{
-          'selected-order':
-            selectedOrderId == order.orderId
-        }"
       >
         <router-link :to="{name: 'order-detail', params:{id: order.orderId} }">
           <div class="order-id">Order Id: {{ order.orderId }}</div>
@@ -41,10 +37,6 @@ export default {
       type: Array,
       default: () => {}
     },
-    selectedOrderId: {
-      type: Number,
-      default: () => 0
-    }
   }
 };
 </script>
