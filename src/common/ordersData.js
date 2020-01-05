@@ -15,12 +15,12 @@ const getOrders = async function() {
 
 const getOrder = async function(id) {
   try {
-    const response = await axios.get(`${API_PATH}/orders/${id}`);
+    const response = await axios.get(`/${API_PATH}/orders/${id}`);
     let order = parseOrder(response);
     return order;
   } catch (error) {
     // logging.logError('Failed to fetch order, error message: ${error}');
-    return [];
+    return {};
   }
 };
 

@@ -5,6 +5,8 @@ import OrderDetail from '../views/Order-Detail'
 
 Vue.use(VueRouter)
 
+const parseProps = r => ({ id: parseInt(r.params.id) });
+
 const routes = [
   {
     path: '/',
@@ -19,7 +21,7 @@ const routes = [
     path: '/orders/:id',
     name: 'order-detail',
     component: OrderDetail,
-    props: true
+    props: parseProps
   },
   {
     path: '/about',

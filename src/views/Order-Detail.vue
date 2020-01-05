@@ -13,7 +13,7 @@
                 <span>Order Id</span>
               </td>
               <td>
-                <input readonly v-model="orderCopy.Id" type="text" />
+                <input readonly v-model="order.id" type="text" />
               </td>
             </tr>
             <tr>
@@ -21,7 +21,7 @@
                 <span>OrderNumber</span>
               </td>
               <td>
-                <input v-model="orderCopy.orderNumber" type="text" />
+                <input v-model="order.orderNumber" type="text" />
               </td>
             </tr>
             <tr>
@@ -29,7 +29,7 @@
                 <span>OrderDate</span>
               </td>
               <td>
-                <input v-model="orderCopy.orderDate" type="date" />
+                <input v-model="order.orderDate" type="date" />
               </td>
             </tr>
           </table>
@@ -53,7 +53,7 @@ export default {
     return {
       name: "OrderDetail",
       message: "",
-      orderCopy: { ...this.order }
+      order: {}
     };
   },
   async created() {
@@ -70,6 +70,9 @@ export default {
       this.order = null;
       this.message = "Loading the order, please wait...";
       this.order = await ordersData.getOrder(this.id);
+
+      console.log(this.order);
+
       this.message = "";
     }
   },
