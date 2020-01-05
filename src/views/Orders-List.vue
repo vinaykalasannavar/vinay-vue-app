@@ -1,13 +1,9 @@
 <template>
   <div>
     <ul class="orders">
-      <li
-        v-for="order in orders"
-        :key="order.orderId"
-        class="order"
-      >
-        <router-link :to="{name: 'order-detail', params:{id: order.orderId} }">
-          <div class="order-id">Order Id: {{ order.orderId }}</div>
+      <li v-for="order in orders" :key="order.id" class="order">
+        <router-link :to="{name: 'order-detail', params:{id: order.id} }">
+          <div class="order-id">Order Id: {{ order.id }}</div>
           <div class="order-number">Order No: {{ order.orderNumber }}</div>
           <div class="order-date">Date: {{ order.orderDate | formatDate }}</div>
         </router-link>
@@ -36,7 +32,7 @@ export default {
     orders: {
       type: Array,
       default: () => {}
-    },
+    }
   }
 };
 </script>

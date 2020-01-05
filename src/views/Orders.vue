@@ -11,14 +11,6 @@
         <orders-list :orders="orders" />
       </div>
     </div>
-
-    <!-- <OrderDetail
-      v-if="selectedOrder"
-      :order="selectedOrder"
-      :key="selectedOrder.orderId"
-      @cancel="cancelOrder"
-      @save="saveOrder"
-    /> -->
   </div>
 </template>
 
@@ -32,8 +24,7 @@ export default {
       key: "",
       message: "",
       orders: [],
-      selectedOrder: null,
-      selectedOrderId: 0
+      selectedOrder: null
     };
   },
   async created() {
@@ -48,17 +39,17 @@ export default {
       this.orders = await ordersData.getOrders();
       this.message = '';
     },
-    cancelOrder() {
-      this.selectedOrder = null;
-    },
-    saveOrder(order) {
-      const orderIndex = this.orders.findIndex(
-        o => o.orderId == this.selectedOrder.orderId
-      );
-      this.orders.splice(orderIndex, 1, order);
-      this.orders = [...this.orders];
-      this.selectedOrder = undefined;
-    }
+    // cancelOrder() {
+    //   this.selectedOrder = null;
+    // },
+    // saveOrder(order) {
+    //   const orderIndex = this.orders.findIndex(
+    //     o => o.orderId == this.selectedOrder.orderId
+    //   );
+    //   this.orders.splice(orderIndex, 1, order);
+    //   this.orders = [...this.orders];
+    //   this.selectedOrder = undefined;
+    // }
   },
   components: { OrdersList }
 };

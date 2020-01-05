@@ -10,10 +10,10 @@
           <table>
             <tr>
               <td>
-                <span>OrderId</span>
+                <span>Order Id</span>
               </td>
               <td>
-                <input readonly v-model="orderCopy.orderId" type="text" />
+                <input readonly v-model="orderCopy.Id" type="text" />
               </td>
             </tr>
             <tr>
