@@ -43,8 +43,8 @@ export default {
   display: inline-flex;
 
   .order {
-    background-color: #40b883a6;
-    border: 1px solid #12613ea6;
+    background-color: #6ce4b0a6;
+    border: 2px solid #12613ea6;
     margin: 5px 5px 5px 5px;
     width: 150px;
     height: 100px;
