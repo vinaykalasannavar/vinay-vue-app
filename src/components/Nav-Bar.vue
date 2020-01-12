@@ -4,6 +4,7 @@
     <ul class="menu-list">
       <router-link to="/orders">Orders</router-link>
       <router-link to="/about">About</router-link>
+      <router-link to="/simple-list">Simple list</router-link>
     </ul>
   </nav>
 </template>
