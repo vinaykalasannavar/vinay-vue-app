@@ -1,7 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Orders from '../views/Orders'
-import OrderDetail from '../views/Order-Detail'
+import PageNotFound from '../views/PageNotFound'
 
 Vue.use(VueRouter)
 
@@ -15,12 +14,12 @@ const routes = [
   {
     path: '/orders',
     name: 'orders',
-    component: Orders
+    component: () => import(/* webpackChunkName: "bundle-orders" */ '../views/Orders.vue'),
   },
   {
     path: '/orders/:id',
     name: 'order-detail',
-    component: OrderDetail,
+    component: () => import(/* webpackChunkName: "bundle-orders" */ '../views/Order-Detail.vue'),
     props: parseProps
   },
   {
@@ -29,7 +28,12 @@ const routes = [
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
+    component: () => import(/* webpackChunkName: "bundle-about" */ '../views/About.vue')
+  },
+  {
+    path: '*',
+    name: 'PageNotFound',
+    component: PageNotFound
   }
 ]
 

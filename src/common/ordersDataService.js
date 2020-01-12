@@ -8,7 +8,6 @@ const getOrders = async function() {
     let ordersData = parseOrdersData(response);
     return ordersData;
   } catch (error) {
-    // logging.logError('Failed to fetch orders data, error message: ${error}');
     return [];
   }
 };
@@ -19,7 +18,18 @@ const getOrder = async function(id) {
     let order = parseOrder(response);
     return order;
   } catch (error) {
-    // logging.logError('Failed to fetch order, error message: ${error}');
+    return {};
+  }
+};
+
+const updateOrder = async function(order) {
+  try {
+    console.log(`here is what you're trying to save: `, order);
+    
+    const response = await axios.put(`/${API_PATH}/orders/${order.id}`, order);
+    let updatedOrder = parseOrder(response);
+    return updatedOrder;
+  } catch (error) {
     return {};
   }
 };
@@ -46,7 +56,8 @@ const parseOrder = response => {
   return order;
 };
 
-export const ordersData = {
+export const ordersDataService = {
   getOrders,
-  getOrder
+  getOrder,
+  updateOrder
 };

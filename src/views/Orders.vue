@@ -16,7 +16,7 @@
 
 <script>
 import OrdersList from "./Orders-List";
-import { ordersData } from '../common/ordersData';
+import { ordersDataService } from "../common/ordersDataService";
 
 export default {
   data() {
@@ -35,21 +35,10 @@ export default {
       //TODO: adder logger and log - component is created, data fetched, etc.
       this.orders = [];
       this.selectedOrder = null;
-      this.message = 'Fetching orders, please wait...';
-      this.orders = await ordersData.getOrders();
-      this.message = '';
-    },
-    // cancelOrder() {
-    //   this.selectedOrder = null;
-    // },
-    // saveOrder(order) {
-    //   const orderIndex = this.orders.findIndex(
-    //     o => o.orderId == this.selectedOrder.orderId
-    //   );
-    //   this.orders.splice(orderIndex, 1, order);
-    //   this.orders = [...this.orders];
-    //   this.selectedOrder = undefined;
-    // }
+      this.message = "Fetching orders, please wait...";
+      this.orders = await ordersDataService.getOrders();
+      this.message = "";
+    }
   },
   components: { OrdersList }
 };

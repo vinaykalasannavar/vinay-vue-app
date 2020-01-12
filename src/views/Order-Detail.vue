@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div v-show="order">
+    <div v-if="order">
       <div class="selected-order-details">
         <div>
           <span>The order you have selected occurs in the month of: {{selectedOrdersMonth}}:</span>
@@ -47,7 +47,7 @@
 </template>
 
 <script>
-import { ordersData } from "../common/ordersData";
+import { ordersDataService } from "../common/ordersDataService";
 export default {
   data() {
     return {
@@ -61,17 +61,25 @@ export default {
   },
   methods: {
     cancelOrderChanges() {
-      this.$emit("cancel");
+      // this.$emit("cancel");
+      this.$router.push({ name: "orders" });
     },
-    saveOrderChanges() {
-      this.$emit("save", this.orderCopy);
+    async saveOrderChanges() {
+      // this.$emit("save", this.orderCopy);
+      console.log('I am trying to save, wait for me..')
+      
+      await ordersDataService.updateOrder(this.order);
+      this.$router.push({ name: "orders" });
     },
     async fetchOrder() {
       this.order = null;
-      this.message = "Loading the order, please wait...";
-      this.order = await ordersData.getOrder(this.id);
+      this.message = `Loading the order, please wait...`;
 
-      console.log(this.order);
+      console.log( `Loading the order (for id: ${this.id}), please wait...`);
+
+      this.order = await ordersDataService.getOrder(this.id);
+
+      console.log('this.order = ', this.order);
 
       this.message = "";
     }
