@@ -16,14 +16,14 @@
 
 <script>
 import OrdersList from "./Orders-List";
-import { ordersDataService } from "../common/ordersDataService";
+// import { ordersDataService } from "../common/ordersDataService";
+import { mapState } from "vuex";
 
 export default {
   data() {
     return {
       key: "",
       message: "",
-      orders: [],
       selectedOrder: null
     };
   },
@@ -33,14 +33,32 @@ export default {
   methods: {
     async fetchOrders() {
       //TODO: adder logger and log - component is created, data fetched, etc.
-      this.orders = [];
       this.selectedOrder = null;
       this.message = "Fetching orders, please wait...";
-      this.orders = await ordersDataService.getOrders();
+      // this.orders = await ordersDataService.getOrders();
       this.message = "";
     }
   },
-  components: { OrdersList }
+  components: { OrdersList },
+  computed: {
+    //Different ways of acessing state
+    // 1. First way
+    // heroes(){
+    //   return this.$store.state.orders;
+
+    // },
+    
+    // 2. Second way
+    // ...mapState({ orders: state => state.orders })
+    
+    // 3. Third way: get a state called orders
+    // ...mapState({ orders: 'orders' })
+    
+    // 4. Third way: since it has the same name
+    // we can acutally use the syntax with the array format, to say... 
+    // go get the thing called orders and create a property locally called orders
+    ...mapState({ ['orders'] })
+  }
 };
 </script>
 
