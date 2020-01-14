@@ -57,7 +57,7 @@ export default {
     // 4. Third way: since it has the same name
     // we can acutally use the syntax with the array format, to say... 
     // go get the thing called orders and create a property locally called orders
-    ...mapState({ ['orders'] })
+    ...mapState( ['orders'])
   }
 };
 </script>
