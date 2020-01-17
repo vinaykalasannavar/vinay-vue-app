@@ -1,27 +1,29 @@
 import Vue from "vue";
 import Vuex from "vuex";
+import { ordersDataService } from "../common";
+import { GET_ORDERS } from "./mutation-types";
 
 Vue.use(Vuex);
 
 const state = {
-  orders: [
-    
-    {
-      "id": "1",
-      "orderNumber": "first order",
-      "orderDate": "2019-01-01"
-    },
-    {
-      "id": "2",
-      "orderNumber": "Second order",
-      "orderDate": "2019-02-02"
-    },
-    
-  ]
-
+  orders: []
 };
-const mutations = {};
-const actions = {};
+const mutations = {
+  /* Property syntax "[GET_ORDERS]" for function name */
+  [GET_ORDERS](state, orders) {
+    state.orders = orders;
+  }
+};
+const actions = {
+  async getOrdersAction({ commit }) {
+    // const ding1 = 1000;
+    // console.log(ding1);
+    console.log('ordersDataService', ordersDataService);
+
+    const orders = await ordersDataService.getOrders();
+    commit(GET_ORDERS, orders);
+  }
+};
 const getters = {};
 
 export default new Vuex.Store({

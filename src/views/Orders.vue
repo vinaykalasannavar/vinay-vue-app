@@ -17,7 +17,7 @@
 <script>
 import OrdersList from "./Orders-List";
 // import { ordersDataService } from "../common/ordersDataService";
-import { mapState } from "vuex";
+import { mapState, mapActions } from "vuex";
 
 export default {
   data() {
@@ -31,11 +31,20 @@ export default {
     this.fetchOrders();
   },
   methods: {
+    ...mapActions(["getOrdersAction"]),
     async fetchOrders() {
       //TODO: adder logger and log - component is created, data fetched, etc.
       this.selectedOrder = null;
       this.message = "Fetching orders, please wait...";
       // this.orders = await ordersDataService.getOrders();
+
+      // Dispatching the action
+      // 1. First way:
+      // await this.$store.dispatch('getOrdersAction');
+
+      // 2. Second way - because we've mapped actions: ...mapActions see methods of this component.
+      await this.getOrdersAction();
+
       this.message = "";
     }
   },
@@ -47,17 +56,17 @@ export default {
     //   return this.$store.state.orders;
 
     // },
-    
+
     // 2. Second way
     // ...mapState({ orders: state => state.orders })
-    
+
     // 3. Third way: get a state called orders
     // ...mapState({ orders: 'orders' })
-    
-    // 4. Third way: since it has the same name
-    // we can acutally use the syntax with the array format, to say... 
+
+    // 4. Fourth way: since it has the same name
+    // we can acutally use the syntax with the array format, to say...
     // go get the thing called orders and create a property locally called orders
-    ...mapState( ['orders'])
+    ...mapState(["orders"])
   }
 };
 </script>
