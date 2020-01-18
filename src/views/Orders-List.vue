@@ -22,12 +22,7 @@ export default {
     };
   },
   mixins: [formatters],
-  methods: {
-    // selectLocalOrder(order) {
-    //   // this.selectedOrder = order;
-    //   this.$emit("orderSelected", order);
-    // }
-  },
+  methods: {},
   props: {
     orders: {
       type: Array,

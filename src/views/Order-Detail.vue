@@ -3,7 +3,9 @@
     <div v-if="order">
       <div class="selected-order-details">
         <div>
-          <span>The order you have selected occurs in the month of: {{selectedOrdersMonth}}:</span>
+          <span
+            v-if="selectedOrdersMonth"
+          >The order you have selected occurs in the month of: {{selectedOrdersMonth}}:</span>
         </div>
 
         <div class="order-table">
@@ -47,7 +49,9 @@
 </template>
 
 <script>
-import { ordersDataService } from "../common/ordersDataService";
+// import { ordersDataService } from "../common/ordersDataService";
+// this.order = this.getOrderById(this.id);
+import { mapGetters, mapActions } from "vuex";
 export default {
   data() {
     return {
@@ -60,33 +64,42 @@ export default {
     this.fetchOrder();
   },
   methods: {
+    ...mapActions(["addOrderAction", "updateOrderAction"]),
     cancelOrderChanges() {
       // this.$emit("cancel");
       this.$router.push({ name: "orders" });
     },
     async saveOrderChanges() {
-      // this.$emit("save", this.orderCopy);
-      console.log('I am trying to save, wait for me..')
+      // await ordersDataService.updateOrder(this.order);
+      console.log(`Saving (${this.areYouAdding}) order)...`, this.order);
       
-      await ordersDataService.updateOrder(this.order);
+      this.areYouAdding
+        ? await this.addOrderAction(this.order)
+        : await this.updateOrderAction(this.order);
+
       this.$router.push({ name: "orders" });
     },
     async fetchOrder() {
       this.order = null;
       this.message = `Loading the order, please wait...`;
 
-      console.log( `Loading the order (for id: ${this.id}), please wait...`);
+      console.log(`Loading the order (for id: ${this.id}), please wait...`);
 
-      this.order = await ordersDataService.getOrder(this.id);
+      // this.order = await ordersDataService.getOrder(this.id);
+      this.order = await {...this.getOrderById(this.id)};
 
-      console.log('this.order = ', this.order);
+      console.log("this.order = ", this.order);
 
       this.message = "";
     }
   },
   computed: {
+    ...mapGetters(['getOrderById']),
+    areYouAdding() {
+      return this.id == 0;
+    },
     selectedOrdersMonth() {
-      return this.order != null
+      return this.order != null && this.order.orderDate != null
         ? new Date(this.order.orderDate).toLocaleString("default", {
             month: "long"
           })

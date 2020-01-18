@@ -8,6 +8,12 @@
 
     <div>
       <div>
+        <router-link :to="{name: 'order-detail', params:{id: 0} }" class="1add-order">
+          <i class="fas fa-plus"></i>
+          <!-- Add order -->
+        </router-link>
+      </div>
+      <div>
         <orders-list :orders="orders" />
       </div>
     </div>
@@ -71,4 +77,10 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+// @import 'vars';
+
+.add-order {
+  background: antiquewhite;
+}
+</style>
